@@ -110,25 +110,22 @@ def rotationInPlace(direction):
     # s = v * t
     in_v = 0.4
     time = s/in_v
-
     # time = 15
     # in_v = s/time
-
     v = inToRad(in_v)
 
-    if direction == "left":
-        leftMotor.setVelocity(-v)
-        rightMotor.setVelocity(v)
-    else:
-        leftMotor.setVelocity(v)
-        rightMotor.setVelocity(-v)
-
-    # debug
-    # print(f'exact time: {1000*time}')
-    # print(f'int time: {int(1000*time)}')
-    robot.step(int(1000*time))
-    leftMotor.setVelocity(0)
-    rightMotor.setVelocity(0)
+    s_time = robot.getTime()
+    while robot.step(timestep) != -1:
+        if robot.getTime()-s_time > time:
+            leftMotor.setVelocity(0)
+            rightMotor.setVelocity(0)
+            break 
+        if direction == "left":
+            leftMotor.setVelocity(-v)
+            rightMotor.setVelocity(v)
+        else:
+            leftMotor.setVelocity(v)
+            rightMotor.setVelocity(-v)
 
 def circularMotion(direction):
     vr = 2
@@ -148,12 +145,14 @@ def circularMotion(direction):
         vl_rad = inToRad(vr)
         vr_rad = inToRad(vl)
 
-    leftMotor.setVelocity(vl_rad)
-    rightMotor.setVelocity(vr_rad)
-    robot.step(int(1000*time))
-    leftMotor.setVelocity(0)
-    rightMotor.setVelocity(0)
-
+    s_time = robot.getTime()
+    while robot.step(timestep) != -1:
+        if robot.getTime()-s_time > time:
+            leftMotor.setVelocity(0)
+            rightMotor.setVelocity(0)
+            break 
+        leftMotor.setVelocity(vl_rad)
+        rightMotor.setVelocity(vr_rad)
 
 def diffDrive(arr):
     pass
