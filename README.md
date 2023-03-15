@@ -1,4 +1,4 @@
-# Robotic Motion Planning - Python Kinematics implementation  
+# Robotic Motion Planning - Webots: Kinematics implementation  
 Webots (E-puck): Python implementation of Rotation-in-place, Following curves, & straight motions.  
 Computing position in real-time (Simulation time), and pre-computing the e-puck movements based on the input way-points.  
 
