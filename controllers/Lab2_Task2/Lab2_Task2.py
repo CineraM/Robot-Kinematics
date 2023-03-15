@@ -168,7 +168,7 @@ def rotationInPlace(direction):
     # for this self rotation ICC R = d_mid
     s = pi*dmid / 2
     # s = v * t
-    in_v = 0.4
+    in_v = 1
     time = s/in_v
     # time = 15
     # in_v = s/time
